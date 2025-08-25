@@ -3,51 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NC Road Trip SOS: Your Guide to a Worry-Free Vacation</title>
+    <!-- SEO Optimized Title -->
+    <title>North Carolina Road Trip Insurance Mistakes: 5 Costly Errors to Avoid in 2025</title>
+    <!-- SEO Optimized Meta Description -->
+    <meta name="description" content="Discover 5 critical insurance mistakes that could cost NC families $125,000+ on road trips. Learn about 2025 coverage changes and protect your family today. Free quote available.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The application is designed as a single-page "Pre-Trip Insurance Hub" to guide users from awareness to action. A sticky top navigation allows users to jump to specific risk sections, breaking down the dense report into manageable, thematic modules (Risk Radar, Top 5 Mistakes, Modern Risks, Action Plan). This non-linear structure respects user time, allowing them to focus on their most relevant concerns. The flow is designed to first establish the "why" (the risks specific to NC travelers) and then provide the "how" (interactive tools and checklists to mitigate those risks), making the information more digestible and actionable than a linear report. -->
-    <!-- Visualization & Content Choices: Data from the report's tables is transformed into interactive charts for easier comparison and comprehension. Table 1 (NC Minimums) becomes a grouped bar chart to visually emphasize the upcoming 2025 changes. Table 3 (State Comparisons) becomes a horizontal bar chart for quick cross-state analysis. Table 4 (Financial Impact) is converted into an interactive donut chart and cost breakdown, allowing users to see the dramatic financial gap. Other key data points, like rental car and medical costs, are presented in simple, toggleable UI elements to create direct cause-and-effect understanding. All visualizations use Chart.js (Canvas) and are supported by contextual text. The final checklist is interactive to provide a sense of completion and utility. -->
+    <!-- Chosen Palette: Professional Blue & Gold -->
+    <!-- Application Structure Plan: The application is structured as a user-friendly, single-page guide. It starts with a compelling hook (the $155k detour) and flows logically into the core problems. A sticky navigation allows users to jump to specific sections: The Risk, The Mistakes, and The Action Plan. This non-linear access is crucial for users seeking specific information. Interactive elements like charts for data visualization (NC vs. 2025, state comparisons) and an accordion for the 5 mistakes break down dense information into digestible chunks, making it more engaging than a static report. The structure is designed to lead the user from understanding the problem to taking concrete action. -->
+    <!-- Visualization & Content Choices: Report data is visualized for impact. Table 1 (NC Minimums) is a bar chart to show the dramatic 2025 increase. Table 3 (State Comparisons) is a horizontal bar chart for easy cross-state analysis. The financial impact of an uninsured motorist is a donut chart to highlight the huge out-of-pocket gap. These choices turn abstract numbers into clear, visual warnings. All visualizations use Chart.js (Canvas) and are supported by contextual text from the report. The final checklist is interactive to empower the user. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8; /* Warm off-white */
-            color: #4A4A4A; /* Dark Gray */
+            background-color: #F8F9FA; /* Light Gray */
+            color: #343A40; /* Dark Gray */
         }
         .nav-link {
             transition: color 0.3s, border-bottom-color 0.3s;
             border-bottom: 2px solid transparent;
         }
         .nav-link:hover, .nav-link.active {
-            color: #C5A06D; /* Muted Gold */
-            border-bottom-color: #C5A06D;
+            color: #005A9C; /* Professional Blue */
+            border-bottom-color: #FFC107; /* Gold Accent */
         }
         .card {
             background-color: #FFFFFF;
-            border: 1px solid #EAEAEA;
+            border: 1px solid #DEE2E6;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .btn-primary {
-            background-color: #5D7B6F; /* Muted Teal */
+            background-color: #005A9C; /* Professional Blue */
             color: #FFFFFF;
             transition: background-color 0.3s;
         }
         .btn-primary:hover {
-            background-color: #4A6359;
+            background-color: #004070;
         }
         .btn-secondary {
-            background-color: #EAEAEA;
-            color: #4A4A4A;
+            background-color: #E9ECEF;
+            color: #343A40;
             transition: background-color 0.3s;
         }
         .btn-secondary.selected {
-            background-color: #C5A06D;
-            color: #FFFFFF;
+            background-color: #FFC107; /* Gold Accent */
+            color: #343A40;
         }
         .chart-container {
             position: relative;
@@ -75,16 +79,15 @@
 </head>
 <body class="antialiased">
 
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+    <header class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="https://www.billlayneinsurance.com" target="_blank" class="text-xl font-bold text-[#5D7B6F]">Bill Layne Insurance</a>
+                <div class="text-xl font-bold text-[#005A9C]">NC Traveler's Insurance Guide</div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#risk-radar" class="nav-link pb-1">Weak Spots</a>
-                    <a href="#mistakes" class="nav-link pb-1">Top 5 Mistakes</a>
-                    <a href="#reviews" class="nav-link pb-1">Reviews</a>
-                    <a href="#modern-risks" class="nav-link pb-1">Extra Tips</a>
-                    <a href="#action-plan" class="nav-link pb-1">To-Do List</a>
+                    <a href="#risk" class="nav-link pb-1">The Risk</a>
+                    <a href="#mistakes" class="nav-link pb-1">5 Costly Mistakes</a>
+                    <a href="#action-plan" class="nav-link pb-1">Action Plan</a>
+                    <a href="#contact" class="nav-link pb-1">Contact Us</a>
                 </div>
             </div>
         </nav>
@@ -93,36 +96,38 @@
     <main>
         <section id="hero" class="py-20 md:py-24 bg-white">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-[#5D7B6F] leading-tight">The <span class="text-[#C5A06D]">Vacation-Wrecking</span> Mistake</h1>
-                <img src="https://github.com/BillLayne/bill-layne-images/blob/main/Blog%20Images/Family%20Road%20Adventure_simple.png?raw=true" alt="Family on a scenic road trip" class="w-full max-w-3xl mx-auto rounded-lg shadow-lg my-8">
-                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-                    A fun family road trip can turn into a huge money problem fast. Find out about the hidden holes in your insurance so you can protect your family and your wallet before you even leave the driveway.
+                <!-- H1 with Primary Keyword -->
+                <h1 class="text-4xl md:text-5xl font-bold text-[#005A9C] leading-tight">North Carolina Road Trip Insurance Mistakes</h1>
+                <img src="https://cdn.jsdelivr.net/gh/BillLayne/bill-layne-images@main/Blog%20Images/Family%20Road%20Adventure_simple.png" alt="Family on a scenic North Carolina road trip" class="w-full max-w-3xl mx-auto rounded-lg shadow-lg my-8">
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-700">
+                    The story of a <span class="font-bold text-[#D9534F]">$155,000 detour</span> on I-40 West and how to prevent it from happening to your family this Labor Day.
                 </p>
             </div>
         </section>
 
-        <section id="risk-radar" class="py-16 md:py-24">
+        <section id="risk" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">Your Insurance Weak Spots</h2>
+                    <!-- H2 with Secondary Keyword -->
+                    <h2 class="text-3xl md:text-4xl font-bold">Auto Insurance Coverage Gaps: Why NC Law Changed</h2>
                     <p class="mt-2 text-lg max-w-3xl mx-auto">
-                        Think of your car insurance like a video game shield. Right now, North Carolina's basic shield is too weak, and a new, stronger one is coming in 2025. See how your current shield stacks up against the new rules and the different rules in states you might visit.
+                        Your standard NC auto policy used to be outdated. State law changed in 2025 because the old minimums were dangerously low. This change highlights why understanding your coverage is still crucial for any road trip.
                     </p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="card p-6 rounded-lg">
-                        <h3 class="text-xl font-bold text-center mb-4">NC's Shield: Now vs. 2025</h3>
+                        <h3 class="text-xl font-bold text-center mb-4">NC Minimums: Before vs. After July 2025</h3>
                         <div class="chart-container">
                             <canvas id="ncLimitsChart"></canvas>
                         </div>
-                        <p class="text-sm mt-4 text-center">The government is making car insurance stronger in 2025 because the old rules aren't enough to pay for a bad accident anymore. This is a big warning sign!</p>
+                        <p class="text-sm mt-4 text-center">The NC General Assembly mandated significant increases, signaling that the old levels were inadequate to cover a serious accident.</p>
                     </div>
                     <div class="card p-6 rounded-lg">
-                        <h3 class="text-xl font-bold text-center mb-4">State Line Shuffle: Different Rules</h3>
+                        <h3 class="text-xl font-bold text-center mb-4">Coverage Squeeze: NC vs. Neighboring States</h3>
                         <div class="chart-container">
                             <canvas id="neighborLimitsChart"></canvas>
                         </div>
-                        <p class="text-sm mt-4 text-center">When you cross into another state, the rules change. Other states have weaker insurance rules, which means more risk for you and your family.</p>
+                        <p class="text-sm mt-4 text-center">Even with NC's new, higher limits, popular destinations like TN and SC have lower requirements, increasing your risk of an accident with an underinsured driver.</p>
                     </div>
                 </div>
             </div>
@@ -131,28 +136,27 @@
         <section id="mistakes" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">The 5 Biggest Money Mistakes</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold">The Five Costliest Labor Day Insurance Mistakes</h2>
                     <p class="mt-2 text-lg max-w-3xl mx-auto">
-                        These are the top 5 slip-ups that can cost your family a ton of money on vacation. Click to see how bad it can get and what you can do about it right now.
+                        These five common oversights can lead to financial disaster. Click each mistake to understand the risk, see a real-world cost breakdown, and learn the immediate actions you can take.
                     </p>
                 </div>
                 <div class="space-y-4 max-w-4xl mx-auto">
                     <!-- Accordion Item 1 -->
                     <div class="card rounded-lg overflow-hidden">
                         <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-1">
-                            <span class="text-lg font-semibold">#1: The Other Driver Has No Insurance</span>
+                            <!-- H3 with Specific Term -->
+                            <span class="text-lg font-semibold">#1: The Uninsured Motorist Protection Shortfall</span>
                             <span class="text-2xl font-light transform transition-transform duration-300">+</span>
                         </button>
                         <div id="accordion-1" class="accordion-content px-6 pb-6">
-                            <p class="mb-4">The biggest danger isn't you—it's someone hitting you who doesn't have insurance. The basic "Uninsured Motorist" coverage you have is tiny compared to the cost of a real accident, and your family could be stuck with a giant bill.</p>
+                            <p class="mb-4">The biggest threat on the road is another driver with little or no insurance. Your minimum Uninsured Motorist (UM) coverage is a fraction of what a serious accident costs, leaving your family to cover a massive financial gap.</p>
                             <div class="grid md:grid-cols-2 gap-6 items-center">
                                 <div>
-                                    <h4 class="font-bold mb-2">What Happens if Someone Gets Really Hurt</h4>
-                                    <p class="text-sm mb-2">Total cost of the accident: $155,000.</p>
-                                    <div id="uninsuredCostResult" class="text-left">
-                                        <p><strong>Total Costs:</strong> <span class="font-bold text-red-600">$155,000</span></p>
-                                        <p><strong>Your Basic Coverage Pays:</strong> <span class="font-bold text-green-600">$30,000</span></p>
-                                        <p class="mt-2"><strong>You Have to Pay:</strong> <span class="font-bold text-2xl text-red-700">$125,000</span></p>
+                                    <h4 class="font-bold mb-2">Financial Impact of a Disabling Injury</h4>
+                                    <p class="text-sm mb-2">Total accident cost: $155,000. Your minimum coverage pays only $50,000.</p>
+                                    <div class="text-left mt-4">
+                                        <p><strong>Your Out-of-Pocket Gap:</strong> <span class="font-bold text-2xl text-red-700">$105,000</span></p>
                                     </div>
                                 </div>
                                 <div class="chart-container h-48 md:h-64">
@@ -160,10 +164,10 @@
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
-                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <h4 class="font-semibold mb-2">Immediate Actions:</h4>
                                 <ul class="list-disc list-inside text-sm space-y-1">
-                                    <li>Call your insurance agent and ask for a price to get way more Uninsured Motorist coverage. It's usually not that expensive!</li>
-                                    <li>Ask about adding coverage for hit-and-runs so you don't have to pay to fix your car.</li>
+                                    <li>Contact your agent and get a quote to increase your UM/UIM limits to at least $100k/$300k, or to match your liability coverage.</li>
+                                    <li>Ask about increasing Uninsured Motorist Property Damage (UMPD) to cover hit-and-run vehicle repairs without a deductible.</li>
                                 </ul>
                             </div>
                         </div>
@@ -171,30 +175,30 @@
                     <!-- Accordion Item 2 -->
                     <div class="card rounded-lg overflow-hidden">
                         <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-2">
-                            <span class="text-lg font-semibold">#2: Getting Sick on Vacation</span>
+                            <span class="text-lg font-semibold">#2: The Out-of-State Medical Network Blindspot</span>
                             <span class="text-2xl font-light transform transition-transform duration-300">+</span>
                         </button>
                         <div id="accordion-2" class="accordion-content px-6 pb-6">
-                            <p class="mb-4">Your health insurance might not work for simple things like a sore throat when you're in another state. That means if you go to an urgent care, your insurance could say "Nope!" and you'll have to pay the whole bill yourself.</p>
+                            <p class="mb-4">Many NC health plans (HMOs/EPOs) don't cover non-emergency care outside their local network. A simple illness on vacation can lead to a denied claim and a huge bill.</p>
                             <div class="flex flex-col md:flex-row gap-4 justify-center text-center">
                                 <div class="border p-4 rounded-lg flex-1">
-                                    <h4 class="font-bold">Urgent Care</h4>
-                                    <p class="text-sm">(like for strep throat)</p>
-                                    <p class="text-3xl font-bold my-2 text-[#C5A06D]">$250</p>
-                                    <p class="text-sm font-semibold text-red-600">Your insurance might say NO.</p>
+                                    <h4 class="font-bold">Urgent Care Visit</h4>
+                                    <p class="text-sm">(e.g., strep throat)</p>
+                                    <p class="text-3xl font-bold my-2 text-[#FFC107]">$250</p>
+                                    <p class="text-sm font-semibold text-red-600">Likely DENIED by your HMO/EPO plan.</p>
                                 </div>
                                 <div class="border p-4 rounded-lg flex-1">
-                                    <h4 class="font-bold">Emergency Room</h4>
-                                    <p class="text-sm">(for the same small problem)</p>
+                                    <h4 class="font-bold">Emergency Room Visit</h4>
+                                    <p class="text-sm">(for the same minor issue)</p>
                                     <p class="text-3xl font-bold my-2 text-red-700">$2,400+</p>
-                                    <p class="text-sm font-semibold text-green-600">They'll pay, but it costs way more!</p>
+                                    <p class="text-sm font-semibold text-green-600">Covered, but a massive avoidable cost.</p>
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
-                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <h4 class="font-semibold mb-2">Immediate Actions:</h4>
                                 <ul class="list-disc list-inside text-sm space-y-1">
-                                    <li>Call your health insurance and ask how they handle urgent care in other states.</li>
-                                    <li>Look up "travel insurance." For a small price, it can save you thousands if someone gets sick.</li>
+                                    <li>Call your health insurer and ask specifically how out-of-state, non-emergency urgent care is covered.</li>
+                                    <li>Get a quote for a short-term travel insurance plan. A small premium can save you thousands in uncovered medical bills.</li>
                                 </ul>
                             </div>
                         </div>
@@ -202,27 +206,27 @@
                     <!-- Accordion Item 3 -->
                     <div class="card rounded-lg overflow-hidden">
                         <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-3">
-                            <span class="text-lg font-semibold">#3: The Rental Car Mistake</span>
+                            <span class="text-lg font-semibold">#3: The Rental Car Coverage Trap</span>
                             <span class="text-2xl font-light transform transition-transform duration-300">+</span>
                         </button>
                         <div id="accordion-3" class="accordion-content px-6 pb-6">
-                            <p class="mb-4">Thinking your regular car insurance or credit card has you covered for a rental is a classic trap. They often don't pay for sneaky fees the rental company charges if there's a scratch or a dent, leaving you with a surprise bill.</p>
+                            <p class="mb-4">Relying on your personal auto policy or credit card for a rental car is risky. They often don't cover common fees like "Loss of Use" or "Diminution of Value," leaving you with a surprise bill after a minor accident.</p>
                             <div class="text-center">
-                                <p class="mb-2 font-semibold">After a small fender-bender in a rental:</p>
+                                <p class="mb-2 font-semibold">After a minor parking lot accident in a rental:</p>
                                 <div class="flex justify-center space-x-4 mb-4">
-                                    <button class="rental-choice-btn btn-secondary selected px-4 py-2 rounded-md" data-choice="decline">You Skipped Their Insurance</button>
-                                    <button class="rental-choice-btn btn-secondary px-4 py-2 rounded-md" data-choice="purchase">You Bought Their Insurance</button>
+                                    <button class="rental-choice-btn btn-secondary selected px-4 py-2 rounded-md" data-choice="decline">You Declined the Waiver</button>
+                                    <button class="rental-choice-btn btn-secondary px-4 py-2 rounded-md" data-choice="purchase">You Purchased the Waiver</button>
                                 </div>
                                 <div id="rentalResult" class="card p-6 max-w-md mx-auto">
                                     <!-- Content updated by JS -->
                                 </div>
                             </div>
                              <div class="mt-6 pt-4 border-t">
-                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <h4 class="font-semibold mb-2">Immediate Actions:</h4>
                                 <ul class="list-disc list-inside text-sm space-y-1">
-                                    <li>Call your agent and ask if they cover special rental car fees.</li>
-                                    <li>Read your credit card's rules—they often have lots of exceptions.</li>
-                                    <li>It's often safest to just buy the insurance the rental car company offers.</li>
+                                    <li>Call your agent and ask if your policy covers "Loss of Use" and "Diminution of Value" for rentals.</li>
+                                    <li>Review your credit card's benefits guide to understand its limitations.</li>
+                                    <li>Budget for and consider buying the rental company's Collision Damage Waiver (CDW/LDW) for peace of mind.</li>
                                 </ul>
                             </div>
                         </div>
@@ -230,27 +234,27 @@
                     <!-- Accordion Item 4 -->
                     <div class="card rounded-lg overflow-hidden">
                         <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-4">
-                            <span class="text-lg font-semibold">#4: Your Stuff & Staying Safe</span>
+                            <span class="text-lg font-semibold">#4: The Personal Property & Liability Gap</span>
                             <span class="text-2xl font-light transform transition-transform duration-300">+</span>
                         </button>
                         <div id="accordion-4" class="accordion-content px-6 pb-6">
-                            <p class="mb-4">Your insurance for your house only protects your stuff a little bit when you travel. And if you rent out your place (like on Airbnb), it probably won't protect you if a guest gets hurt.</p>
+                            <p class="mb-4">Your homeowners policy offers limited coverage for belongings away from home, and it likely excludes liability for incidents at a vacation rental you host (e.g., an Airbnb).</p>
                              <div class="grid md:grid-cols-2 gap-4 text-sm">
                                 <div class="border p-4 rounded-lg">
-                                    <h4 class="font-bold mb-2">Stuff Stolen From Your Car</h4>
-                                    <p>If someone steals your laptop and tablet from your car, your homeowners insurance might only pay a tiny part of what they're worth after your deductible.</p>
+                                    <h4 class="font-bold mb-2">Theft from Your Car</h4>
+                                    <p>Your homeowners coverage for "off-premises" property is often just 10% of your total limit, with even lower sub-limits for electronics. A $7,000 theft could result in a payout of only $1,500 after deductibles and limits.</p>
                                 </div>
                                 <div class="border p-4 rounded-lg">
-                                    <h4 class="font-bold mb-2">The Airbnb Problem</h4>
-                                    <p>If you rent your house to someone and they get hurt, your normal insurance will probably say "not our problem," and you could be sued for a lot of money.</p>
+                                    <h4 class="font-bold mb-2">The Airbnb Lawsuit</h4>
+                                    <p>If a guest is injured at your rental property, your standard homeowners policy will likely deny the claim due to a "business activity" exclusion, leaving you personally liable for hundreds of thousands of dollars.</p>
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
-                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <h4 class="font-semibold mb-2">Immediate Actions:</h4>
                                 <ul class="list-disc list-inside text-sm space-y-1">
-                                    <li>Check your homeowners policy to see how much it covers for things stolen outside your home.</li>
-                                    <li>If you rent your place, you need special "short-term rental" insurance. Call your agent ASAP.</li>
-                                    <li>Ask about an "umbrella policy." It's extra protection for big lawsuits and doesn't cost much.</li>
+                                    <li>Check your homeowners policy for "off-premises" coverage limits and sub-limits for valuables.</li>
+                                    <li>If you host a rental, get a specific Short-Term Rental (STR) insurance policy immediately.</li>
+                                    <li>Request a quote for a $1 million personal umbrella policy to protect your assets from major lawsuits.</li>
                                 </ul>
                             </div>
                         </div>
@@ -258,84 +262,26 @@
                     <!-- Accordion Item 5 -->
                     <div class="card rounded-lg overflow-hidden">
                         <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-5">
-                            <span class="text-lg font-semibold">#5: What "Roadside Help" Really Means</span>
+                            <span class="text-lg font-semibold">#5: The Emergency Roadside & Towing Misconception</span>
                             <span class="text-2xl font-light transform transition-transform duration-300">+</span>
                         </button>
                         <div id="accordion-5" class="accordion-content px-6 pb-6">
-                            <p class="mb-4">That cheap roadside help on your insurance plan probably only tows you a few miles. If you break down in the mountains or at the beach, you could be stuck paying hundreds for the rest of the tow.</p>
+                            <p class="mb-4">Basic roadside assistance plans have towing limits (often just 15 miles) that are inadequate for rural or mountain travel, leaving you stranded with a hefty bill.</p>
                             <div class="text-center card p-6 max-w-md mx-auto">
-                                <h4 class="font-bold">Broke Down on the Parkway</h4>
-                                <p class="text-sm mb-2">50 miles from a mechanic.</p>
-                                <p class="text-lg">Your plan only covers 15 miles. You have to pay for the other 35.</p>
-                                <p class="text-3xl font-bold my-2 text-red-700">$100+ Surprise Bill!</p>
-                                <p class="text-sm">A better plan with 100-mile towing often costs just a little more per year.</p>
+                                <h4 class="font-bold">Breakdown on the Blue Ridge Parkway</h4>
+                                <p class="text-sm mb-2">50 miles from the nearest repair shop.</p>
+                                <p class="text-lg">Your basic 15-mile tow limit leaves you paying for 35 miles out-of-pocket.</p>
+                                <p class="text-3xl font-bold my-2 text-red-700">$70 - $175+</p>
+                                <p class="text-sm">An upgraded plan with 100-mile towing often costs just $20-$40 extra per year.</p>
                             </div>
                             <div class="mt-6 pt-4 border-t">
-                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <h4 class="font-semibold mb-2">Immediate Actions:</h4>
                                 <ul class="list-disc list-inside text-sm space-y-1">
-                                    <li>Check your insurance card to see how many miles your towing covers.</li>
-                                    <li>If it's low, call your agent and upgrade. Ask for a plan that also helps pay for a hotel if you get stuck.</li>
+                                    <li>Check your auto policy for your specific roadside assistance towing mileage limit.</li>
+                                    <li>If it's under 100 miles, upgrade to a premium plan and ask if it includes "Trip Interruption" coverage for hotels and meals during repairs.</li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="reviews" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">What Other NC Families Are Saying</h2>
-                    <p class="mt-2 text-lg max-w-3xl mx-auto">
-                        Don't just take our word for it. See how a little planning made a big difference on other family trips.
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="card p-6 rounded-lg">
-                        <p class="text-gray-600">"I never thought about our car insurance for our annual NC road trip. After reading this, I called my agent and upped our coverage. It cost less than a tank of gas and gave me so much peace of mind."</p>
-                        <p class="mt-4 font-bold text-right">- The Johnson Family, Raleigh</p>
-                    </div>
-                    <div class="card p-6 rounded-lg">
-                        <p class="text-gray-600">"The tip about uninsured motorist coverage was a lifesaver. We were on our way to the mountains and saw a bad wreck. It made me so glad we had checked our policy first. A must-read for any parent."</p>
-                        <p class="mt-4 font-bold text-right">- Maria G., Charlotte</p>
-                    </div>
-                    <div class="card p-6 rounded-lg">
-                        <p class="text-gray-600">"We almost made the rental car mistake on our trip to Myrtle Beach! This guide saved us from a huge headache. We ended up getting the rental company's insurance and felt way less stressed about it."</p>
-                        <p class="mt-4 font-bold text-right">- David Chen, Greensboro</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="modern-risks" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">Extra Tips for Your Family</h2>
-                    <p class="mt-2 text-lg max-w-3xl mx-auto">
-                        Life's complicated! Here are some extra tips for specific situations, like when your teen is driving or you bring your dog along.
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="card p-6 rounded-lg text-center">
-                        <div class="text-4xl mb-4">🚗</div>
-                        <h3 class="text-xl font-bold mb-2">Teen Drivers</h3>
-                        <p class="text-sm">Make sure your teen is listed on your insurance if they're going to drive. A ticket they get in another state can still make your insurance cost more back home.</p>
-                    </div>
-                    <div class="card p-6 rounded-lg text-center">
-                        <div class="text-4xl mb-4">🐾</div>
-                        <h3 class="text-xl font-bold mb-2">Traveling with Pets</h3>
-                        <p class="text-sm">If your dog gets sick and you have to cancel your trip, you'll lose money on your hotel. You need special travel insurance that covers pet emergencies.</p>
-                    </div>
-                    <div class="card p-6 rounded-lg text-center">
-                        <div class="text-4xl mb-4">👵</div>
-                        <h3 class="text-xl font-bold mb-2">Trips with Grandparents</h3>
-                        <p class="text-sm">When traveling with older relatives, buy travel insurance right after you book your trip. This helps make sure you're covered if they have a health issue they already knew about.</p>
-                    </div>
-                    <div class="card p-6 rounded-lg text-center">
-                        <div class="text-4xl mb-4">📱</div>
-                        <h3 class="text-xl font-bold mb-2">Using Uber/Lyft</h3>
-                        <p class="text-sm">Rideshare cars have the least insurance when they're waiting for a ride. Your own car insurance is your best backup plan if you get in a wreck with one.</p>
                     </div>
                 </div>
             </div>
@@ -344,48 +290,62 @@
         <section id="action-plan" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">Your Pre-Trip To-Do List</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold">Your Pre-Trip Insurance Audit & Action Plan</h2>
                     <p class="mt-2 text-lg max-w-3xl mx-auto">
-                        Don't wait until the last minute! Use this checklist a couple of weeks before you go to make sure you're all set.
+                        Use this interactive checklist and agent script two weeks before your trip to audit your policies and close any dangerous coverage gaps.
                     </p>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
                     <div class="card p-6 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4">10-Point Safety Check</h3>
+                        <h3 class="text-xl font-bold mb-4">10-Point Insurance Audit</h3>
                         <div id="checklist" class="space-y-3">
                             <!-- Checklist items generated by JS -->
                         </div>
                     </div>
                     <div class="card p-6 rounded-lg">
-                        <h3 class="text-xl font-bold mb-4">What to Ask Your Insurance Person</h3>
+                        <h3 class="text-xl font-bold mb-4">Expert Questions for Your Agent</h3>
                         <div class="space-y-4 text-sm">
                             <div>
-                                <p class="font-semibold">1. For Other Drivers' Mistakes:</p>
-                                <p class="bg-gray-100 p-3 rounded-md mt-1">"Can you give me a price to increase my Uninsured Motorist coverage so it's as high as my main coverage?"</p>
+                                <p class="font-semibold">1. For Uninsured Motorist Coverage:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"I'm planning a road trip. Can you provide a quote to increase my Uninsured/Underinsured Motorist limits to match my liability limits?"</p>
                             </div>
                             <div>
-                                <p class="font-semibold">2. For Getting Stranded:</p>
-                                <p class="bg-gray-100 p-3 rounded-md mt-1">"How much to upgrade my roadside help to tow me 100 miles? Does it help pay for a hotel if I get stuck?"</p>
+                                <p class="font-semibold">2. For Rental Cars:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"Does my personal auto policy provide primary coverage for 'Loss of Use' or 'Diminution of Value' fees from a rental company?"</p>
                             </div>
-                            <div>
-                                <p class="font-semibold">3. For Rental Cars:</p>
-                                <p class="bg-gray-100 p-3 rounded-md mt-1">"Does my policy pay for the special fees a rental company charges, like 'Loss of Use'?"</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">4. For Renting Your Place:</p>
-                                <p class="bg-gray-100 p-3 rounded-md mt-1">"We rent our beach house on VRBO. Does my homeowners insurance protect me if a renter gets hurt?"</p>
+                             <div>
+                                <p class="font-semibold">3. Regarding 2025 NC Insurance Law Changes:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"Now that the new NC car insurance requirements are in effect, what other changes should I consider for my policy?"</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Protect Your Family Today</h2>
+                <p class="mt-2 text-lg max-w-3xl mx-auto">
+                    Don't wait for a vacation-wrecking mistake. As your local North Carolina auto insurance agent, we can help you review your coverage.
+                </p>
+                <div class="mt-8">
+                    <a href="#" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg">Get a Free Quote</a>
+                </div>
+                <div class="mt-8 text-sm text-gray-600">
+                    <p class="font-bold">Bill Layne Insurance Elkin NC</p>
+                    <p>Your trusted Elkin insurance coverage specialist.</p>
+                    <p>We help you understand NC car insurance requirements for 2025 and beyond.</p>
+                    <p>Searching for a "local insurance agent near me"? We're here to help.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-[#5D7B6F] text-white mt-16">
+    <footer class="bg-[#343A40] text-white mt-16">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>NC Road Trip SOS</p>
-            <p class="text-sm mt-2 opacity-75">This is just a guide! Talk to a real insurance agent to check your own policies and make sure you're protected.</p>
+            <p>&copy; 2025 Bill Layne Insurance. All Rights Reserved.</p>
+            <p class="text-sm mt-2 opacity-75">This information is for educational purposes only. Consult with a licensed insurance agent to review your specific policies and needs.</p>
         </div>
     </footer>
 
@@ -443,19 +403,15 @@
             new Chart(document.getElementById('ncLimitsChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['For 1 Person Hurt', 'For Whole Accident', 'For Car Damage'],
+                    labels: ['BI (Person)', 'BI (Accident)', 'Property Damage'],
                     datasets: [{
-                        label: 'Current Shield',
+                        label: 'Old Minimum (Before July 2025)',
                         data: [30000, 60000, 25000],
-                        backgroundColor: '#C5A06D',
-                        borderColor: '#C5A06D',
-                        borderWidth: 1
+                        backgroundColor: '#FFC107',
                     }, {
-                        label: 'New 2025 Shield',
+                        label: 'Current Minimum (Since July 2025)',
                         data: [50000, 100000, 50000],
-                        backgroundColor: '#5D7B6F',
-                        borderColor: '#5D7B6F',
-                        borderWidth: 1
+                        backgroundColor: '#005A9C',
                     }]
                 },
                 options: chartOptions
@@ -464,26 +420,22 @@
             new Chart(document.getElementById('neighborLimitsChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['NC (Current)', 'South Carolina', 'Virginia', 'Tennessee', 'Georgia'],
+                    labels: ['NC (Current)', 'SC', 'VA', 'GA', 'TN'],
                     datasets: [{
-                        label: 'Coverage for Injuries (per person)',
-                        data: [30000, 25000, 30000, 25000, 25000],
-                        backgroundColor: '#5D7B6F',
-                    }, {
-                        label: 'Coverage for Car Damage',
-                        data: [25000, 25000, 20000, 25000, 25000],
-                        backgroundColor: '#C5A06D',
+                        label: 'Bodily Injury Liability (per person)',
+                        data: [50000, 25000, 30000, 25000, 25000],
+                        backgroundColor: '#005A9C',
                     }]
                 },
-                options: horizontalChartOptions
+                options: { ...horizontalChartOptions, plugins: { legend: { display: false } }, scales: { y: { stacked: true }, x: { ...horizontalChartOptions.scales.x, stacked: true } } }
             });
             
             new Chart(document.getElementById('uninsuredDonutChart'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['You Have to Pay', 'Your Insurance Pays'],
+                    labels: ['Your Out-of-Pocket Gap', 'Minimum UM Coverage'],
                     datasets: [{
-                        data: [125000, 30000],
+                        data: [105000, 50000],
                         backgroundColor: ['#D9534F', '#5CB85C'],
                         hoverOffset: 4
                     }]
@@ -511,41 +463,6 @@
                 }
             });
 
-
-            const rentalResultEl = document.getElementById('rentalResult');
-            const rentalButtons = document.querySelectorAll('.rental-choice-btn');
-            const rentalCosts = {
-                decline: {
-                    title: "Your Cost",
-                    cost: "$2,570",
-                    details: "This includes your deductible plus sneaky fees for 'Loss of Use' and other things your regular insurance won't cover."
-                },
-                purchase: {
-                    title: "Your Cost",
-                    cost: "$175",
-                    details: "This is just the price for their insurance. You pay $0 for the accident and can walk away without any surprise bills."
-                }
-            };
-            
-            function updateRentalResult(choice) {
-                const data = rentalCosts[choice];
-                rentalResultEl.innerHTML = `
-                    <h4 class="font-bold text-lg">${data.title}</h4>
-                    <p class="text-4xl font-bold my-2 ${choice === 'decline' ? 'text-red-700' : 'text-green-600'}">${data.cost}</p>
-                    <p class="text-xs">${data.details}</p>
-                `;
-                rentalButtons.forEach(btn => {
-                    btn.classList.toggle('selected', btn.dataset.choice === choice);
-                });
-            }
-
-            rentalButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    updateRentalResult(button.dataset.choice);
-                });
-            });
-            updateRentalResult('decline');
-
             const accordionButtons = document.querySelectorAll('.accordion-button');
             accordionButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -567,17 +484,55 @@
                 });
             });
 
+            const rentalResultEl = document.getElementById('rentalResult');
+            const rentalButtons = document.querySelectorAll('.rental-choice-btn');
+            const rentalCosts = {
+                decline: {
+                    title: "Total Out-of-Pocket Cost",
+                    cost: "$2,570",
+                    details: "Includes your $500 deductible, plus $2,070 in fees for 'Loss of Use' and 'Diminution of Value' that your personal policy and credit card likely won't cover."
+                },
+                purchase: {
+                    title: "Total Out-of-Pocket Cost",
+                    cost: "$175",
+                    details: "This is the cost of the waiver itself. The rental company assumes responsibility for all damages and fees, leaving you with a $0 bill for the incident."
+                }
+            };
+            
+            function updateRentalResult(choice) {
+                if (!rentalResultEl) return;
+                const data = rentalCosts[choice];
+                rentalResultEl.innerHTML = `
+                    <h4 class="font-bold text-lg">${data.title}</h4>
+                    <p class="text-4xl font-bold my-2 ${choice === 'decline' ? 'text-red-700' : 'text-green-600'}">${data.cost}</p>
+                    <p class="text-xs">${data.details}</p>
+                `;
+                rentalButtons.forEach(btn => {
+                    btn.classList.toggle('selected', btn.dataset.choice === choice);
+                });
+            }
+
+            rentalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    updateRentalResult(button.dataset.choice);
+                });
+            });
+            if (rentalButtons.length > 0) {
+                updateRentalResult('decline');
+            }
+
+
             const checklistItems = [
-                "Is my car insurance strong enough?",
-                "Do I have enough Uninsured Motorist coverage?",
-                "Does my health insurance work out of state?",
-                "Do I have a plan for a rental car?",
-                "Is my stuff covered if it's stolen?",
-                "Do I have special insurance if I rent my house?",
-                "Does my roadside help tow far enough?",
-                "Is my teen driver on my policy?",
-                "Should I get travel insurance?",
-                "Do I have an 'umbrella' policy for big problems?"
+                "Auto Liability Limits: At least $100k/$300k/$100k?",
+                "UM/UIM Limits: Match my liability limits?",
+                "Health Insurance: Confirmed out-of-state urgent care coverage?",
+                "Rental Car: Budgeted for the CDW to cover gaps?",
+                "Homeowners/Renters: Know my 'off-premises' property limits?",
+                "Vacation Rental Host: Secured a separate STR policy?",
+                "Roadside Assistance: Towing limit is 100+ miles with Trip Interruption?",
+                "Teen Drivers: All potential drivers listed on policy?",
+                "Travel Insurance: Got a quote to cover medical/cancellation risks?",
+                "Umbrella Policy: Have at least $1 million in extra liability?"
             ];
 
             const checklistContainer = document.getElementById('checklist');
@@ -586,7 +541,7 @@
                 label.className = 'flex items-center space-x-3 cursor-pointer';
                 const input = document.createElement('input');
                 input.type = 'checkbox';
-                input.className = 'h-5 w-5 rounded border-gray-300 text-[#5D7B6F] focus:ring-[#5D7B6F]';
+                input.className = 'h-5 w-5 rounded border-gray-300 text-[#005A9C] focus:ring-[#005A9C]';
                 const span = document.createElement('span');
                 span.className = 'text-sm';
                 span.textContent = itemText;
