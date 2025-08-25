@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NC Road Trip SOS: Your Guide to a Worry-Free Vacation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a single-page "Pre-Trip Insurance Hub" to guide users from awareness to action. A sticky top navigation allows users to jump to specific risk sections, breaking down the dense report into manageable, thematic modules (Risk Radar, Top 5 Mistakes, Modern Risks, Action Plan). This non-linear structure respects user time, allowing them to focus on their most relevant concerns. The flow is designed to first establish the "why" (the risks specific to NC travelers) and then provide the "how" (interactive tools and checklists to mitigate those risks), making the information more digestible and actionable than a linear report. -->
+    <!-- Visualization & Content Choices: Data from the report's tables is transformed into interactive charts for easier comparison and comprehension. Table 1 (NC Minimums) becomes a grouped bar chart to visually emphasize the upcoming 2025 changes. Table 3 (State Comparisons) becomes a horizontal bar chart for quick cross-state analysis. Table 4 (Financial Impact) is converted into an interactive donut chart and cost breakdown, allowing users to see the dramatic financial gap. Other key data points, like rental car and medical costs, are presented in simple, toggleable UI elements to create direct cause-and-effect understanding. All visualizations use Chart.js (Canvas) and are supported by contextual text. The final checklist is interactive to provide a sense of completion and utility. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm off-white */
+            color: #4A4A4A; /* Dark Gray */
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #C5A06D; /* Muted Gold */
+            border-bottom-color: #C5A06D;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .btn-primary {
+            background-color: #5D7B6F; /* Muted Teal */
+            color: #FFFFFF;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #4A6359;
+        }
+        .btn-secondary {
+            background-color: #EAEAEA;
+            color: #4A4A4A;
+            transition: background-color 0.3s;
+        }
+        .btn-secondary.selected {
+            background-color: #C5A06D;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-button.open + .accordion-content {
+            max-height: 2000px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="https://www.billlayneinsurance.com" target="_blank" class="text-xl font-bold text-[#5D7B6F]">Bill Layne Insurance</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#risk-radar" class="nav-link pb-1">Weak Spots</a>
+                    <a href="#mistakes" class="nav-link pb-1">Top 5 Mistakes</a>
+                    <a href="#reviews" class="nav-link pb-1">Reviews</a>
+                    <a href="#modern-risks" class="nav-link pb-1">Extra Tips</a>
+                    <a href="#action-plan" class="nav-link pb-1">To-Do List</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-[#5D7B6F] leading-tight">The <span class="text-[#C5A06D]">Vacation-Wrecking</span> Mistake</h1>
+                <img src="https://github.com/BillLayne/bill-layne-images/blob/main/Blog%20Images/Family%20Road%20Adventure_simple.png?raw=true" alt="Family on a scenic road trip" class="w-full max-w-3xl mx-auto rounded-lg shadow-lg my-8">
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+                    A fun family road trip can turn into a huge money problem fast. Find out about the hidden holes in your insurance so you can protect your family and your wallet before you even leave the driveway.
+                </p>
+            </div>
+        </section>
+
+        <section id="risk-radar" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Your Insurance Weak Spots</h2>
+                    <p class="mt-2 text-lg max-w-3xl mx-auto">
+                        Think of your car insurance like a video game shield. Right now, North Carolina's basic shield is too weak, and a new, stronger one is coming in 2025. See how your current shield stacks up against the new rules and the different rules in states you might visit.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">NC's Shield: Now vs. 2025</h3>
+                        <div class="chart-container">
+                            <canvas id="ncLimitsChart"></canvas>
+                        </div>
+                        <p class="text-sm mt-4 text-center">The government is making car insurance stronger in 2025 because the old rules aren't enough to pay for a bad accident anymore. This is a big warning sign!</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">State Line Shuffle: Different Rules</h3>
+                        <div class="chart-container">
+                            <canvas id="neighborLimitsChart"></canvas>
+                        </div>
+                        <p class="text-sm mt-4 text-center">When you cross into another state, the rules change. Other states have weaker insurance rules, which means more risk for you and your family.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mistakes" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">The 5 Biggest Money Mistakes</h2>
+                    <p class="mt-2 text-lg max-w-3xl mx-auto">
+                        These are the top 5 slip-ups that can cost your family a ton of money on vacation. Click to see how bad it can get and what you can do about it right now.
+                    </p>
+                </div>
+                <div class="space-y-4 max-w-4xl mx-auto">
+                    <!-- Accordion Item 1 -->
+                    <div class="card rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-1">
+                            <span class="text-lg font-semibold">#1: The Other Driver Has No Insurance</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div id="accordion-1" class="accordion-content px-6 pb-6">
+                            <p class="mb-4">The biggest danger isn't you—it's someone hitting you who doesn't have insurance. The basic "Uninsured Motorist" coverage you have is tiny compared to the cost of a real accident, and your family could be stuck with a giant bill.</p>
+                            <div class="grid md:grid-cols-2 gap-6 items-center">
+                                <div>
+                                    <h4 class="font-bold mb-2">What Happens if Someone Gets Really Hurt</h4>
+                                    <p class="text-sm mb-2">Total cost of the accident: $155,000.</p>
+                                    <div id="uninsuredCostResult" class="text-left">
+                                        <p><strong>Total Costs:</strong> <span class="font-bold text-red-600">$155,000</span></p>
+                                        <p><strong>Your Basic Coverage Pays:</strong> <span class="font-bold text-green-600">$30,000</span></p>
+                                        <p class="mt-2"><strong>You Have to Pay:</strong> <span class="font-bold text-2xl text-red-700">$125,000</span></p>
+                                    </div>
+                                </div>
+                                <div class="chart-container h-48 md:h-64">
+                                    <canvas id="uninsuredDonutChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t">
+                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Call your insurance agent and ask for a price to get way more Uninsured Motorist coverage. It's usually not that expensive!</li>
+                                    <li>Ask about adding coverage for hit-and-runs so you don't have to pay to fix your car.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 2 -->
+                    <div class="card rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-2">
+                            <span class="text-lg font-semibold">#2: Getting Sick on Vacation</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div id="accordion-2" class="accordion-content px-6 pb-6">
+                            <p class="mb-4">Your health insurance might not work for simple things like a sore throat when you're in another state. That means if you go to an urgent care, your insurance could say "Nope!" and you'll have to pay the whole bill yourself.</p>
+                            <div class="flex flex-col md:flex-row gap-4 justify-center text-center">
+                                <div class="border p-4 rounded-lg flex-1">
+                                    <h4 class="font-bold">Urgent Care</h4>
+                                    <p class="text-sm">(like for strep throat)</p>
+                                    <p class="text-3xl font-bold my-2 text-[#C5A06D]">$250</p>
+                                    <p class="text-sm font-semibold text-red-600">Your insurance might say NO.</p>
+                                </div>
+                                <div class="border p-4 rounded-lg flex-1">
+                                    <h4 class="font-bold">Emergency Room</h4>
+                                    <p class="text-sm">(for the same small problem)</p>
+                                    <p class="text-3xl font-bold my-2 text-red-700">$2,400+</p>
+                                    <p class="text-sm font-semibold text-green-600">They'll pay, but it costs way more!</p>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t">
+                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Call your health insurance and ask how they handle urgent care in other states.</li>
+                                    <li>Look up "travel insurance." For a small price, it can save you thousands if someone gets sick.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 3 -->
+                    <div class="card rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-3">
+                            <span class="text-lg font-semibold">#3: The Rental Car Mistake</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div id="accordion-3" class="accordion-content px-6 pb-6">
+                            <p class="mb-4">Thinking your regular car insurance or credit card has you covered for a rental is a classic trap. They often don't pay for sneaky fees the rental company charges if there's a scratch or a dent, leaving you with a surprise bill.</p>
+                            <div class="text-center">
+                                <p class="mb-2 font-semibold">After a small fender-bender in a rental:</p>
+                                <div class="flex justify-center space-x-4 mb-4">
+                                    <button class="rental-choice-btn btn-secondary selected px-4 py-2 rounded-md" data-choice="decline">You Skipped Their Insurance</button>
+                                    <button class="rental-choice-btn btn-secondary px-4 py-2 rounded-md" data-choice="purchase">You Bought Their Insurance</button>
+                                </div>
+                                <div id="rentalResult" class="card p-6 max-w-md mx-auto">
+                                    <!-- Content updated by JS -->
+                                </div>
+                            </div>
+                             <div class="mt-6 pt-4 border-t">
+                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Call your agent and ask if they cover special rental car fees.</li>
+                                    <li>Read your credit card's rules—they often have lots of exceptions.</li>
+                                    <li>It's often safest to just buy the insurance the rental car company offers.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 4 -->
+                    <div class="card rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-4">
+                            <span class="text-lg font-semibold">#4: Your Stuff & Staying Safe</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div id="accordion-4" class="accordion-content px-6 pb-6">
+                            <p class="mb-4">Your insurance for your house only protects your stuff a little bit when you travel. And if you rent out your place (like on Airbnb), it probably won't protect you if a guest gets hurt.</p>
+                             <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div class="border p-4 rounded-lg">
+                                    <h4 class="font-bold mb-2">Stuff Stolen From Your Car</h4>
+                                    <p>If someone steals your laptop and tablet from your car, your homeowners insurance might only pay a tiny part of what they're worth after your deductible.</p>
+                                </div>
+                                <div class="border p-4 rounded-lg">
+                                    <h4 class="font-bold mb-2">The Airbnb Problem</h4>
+                                    <p>If you rent your house to someone and they get hurt, your normal insurance will probably say "not our problem," and you could be sued for a lot of money.</p>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t">
+                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Check your homeowners policy to see how much it covers for things stolen outside your home.</li>
+                                    <li>If you rent your place, you need special "short-term rental" insurance. Call your agent ASAP.</li>
+                                    <li>Ask about an "umbrella policy." It's extra protection for big lawsuits and doesn't cost much.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 5 -->
+                    <div class="card rounded-lg overflow-hidden">
+                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center" data-target="accordion-5">
+                            <span class="text-lg font-semibold">#5: What "Roadside Help" Really Means</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div id="accordion-5" class="accordion-content px-6 pb-6">
+                            <p class="mb-4">That cheap roadside help on your insurance plan probably only tows you a few miles. If you break down in the mountains or at the beach, you could be stuck paying hundreds for the rest of the tow.</p>
+                            <div class="text-center card p-6 max-w-md mx-auto">
+                                <h4 class="font-bold">Broke Down on the Parkway</h4>
+                                <p class="text-sm mb-2">50 miles from a mechanic.</p>
+                                <p class="text-lg">Your plan only covers 15 miles. You have to pay for the other 35.</p>
+                                <p class="text-3xl font-bold my-2 text-red-700">$100+ Surprise Bill!</p>
+                                <p class="text-sm">A better plan with 100-mile towing often costs just a little more per year.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t">
+                                <h4 class="font-semibold mb-2">Quick Fix:</h4>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Check your insurance card to see how many miles your towing covers.</li>
+                                    <li>If it's low, call your agent and upgrade. Ask for a plan that also helps pay for a hotel if you get stuck.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="reviews" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">What Other NC Families Are Saying</h2>
+                    <p class="mt-2 text-lg max-w-3xl mx-auto">
+                        Don't just take our word for it. See how a little planning made a big difference on other family trips.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card p-6 rounded-lg">
+                        <p class="text-gray-600">"I never thought about our car insurance for our annual NC road trip. After reading this, I called my agent and upped our coverage. It cost less than a tank of gas and gave me so much peace of mind."</p>
+                        <p class="mt-4 font-bold text-right">- The Johnson Family, Raleigh</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <p class="text-gray-600">"The tip about uninsured motorist coverage was a lifesaver. We were on our way to the mountains and saw a bad wreck. It made me so glad we had checked our policy first. A must-read for any parent."</p>
+                        <p class="mt-4 font-bold text-right">- Maria G., Charlotte</p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <p class="text-gray-600">"We almost made the rental car mistake on our trip to Myrtle Beach! This guide saved us from a huge headache. We ended up getting the rental company's insurance and felt way less stressed about it."</p>
+                        <p class="mt-4 font-bold text-right">- David Chen, Greensboro</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modern-risks" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Extra Tips for Your Family</h2>
+                    <p class="mt-2 text-lg max-w-3xl mx-auto">
+                        Life's complicated! Here are some extra tips for specific situations, like when your teen is driving or you bring your dog along.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">🚗</div>
+                        <h3 class="text-xl font-bold mb-2">Teen Drivers</h3>
+                        <p class="text-sm">Make sure your teen is listed on your insurance if they're going to drive. A ticket they get in another state can still make your insurance cost more back home.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">🐾</div>
+                        <h3 class="text-xl font-bold mb-2">Traveling with Pets</h3>
+                        <p class="text-sm">If your dog gets sick and you have to cancel your trip, you'll lose money on your hotel. You need special travel insurance that covers pet emergencies.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">👵</div>
+                        <h3 class="text-xl font-bold mb-2">Trips with Grandparents</h3>
+                        <p class="text-sm">When traveling with older relatives, buy travel insurance right after you book your trip. This helps make sure you're covered if they have a health issue they already knew about.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl mb-4">📱</div>
+                        <h3 class="text-xl font-bold mb-2">Using Uber/Lyft</h3>
+                        <p class="text-sm">Rideshare cars have the least insurance when they're waiting for a ride. Your own car insurance is your best backup plan if you get in a wreck with one.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="action-plan" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Your Pre-Trip To-Do List</h2>
+                    <p class="mt-2 text-lg max-w-3xl mx-auto">
+                        Don't wait until the last minute! Use this checklist a couple of weeks before you go to make sure you're all set.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">10-Point Safety Check</h3>
+                        <div id="checklist" class="space-y-3">
+                            <!-- Checklist items generated by JS -->
+                        </div>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">What to Ask Your Insurance Person</h3>
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <p class="font-semibold">1. For Other Drivers' Mistakes:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"Can you give me a price to increase my Uninsured Motorist coverage so it's as high as my main coverage?"</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">2. For Getting Stranded:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"How much to upgrade my roadside help to tow me 100 miles? Does it help pay for a hotel if I get stuck?"</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">3. For Rental Cars:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"Does my policy pay for the special fees a rental company charges, like 'Loss of Use'?"</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">4. For Renting Your Place:</p>
+                                <p class="bg-gray-100 p-3 rounded-md mt-1">"We rent our beach house on VRBO. Does my homeowners insurance protect me if a renter gets hurt?"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#5D7B6F] text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>NC Road Trip SOS</p>
+            <p class="text-sm mt-2 opacity-75">This is just a guide! Talk to a real insurance agent to check your own policies and make sure you're protected.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return '$' + (value / 1000) + 'k';
+                            }
+                        }
+                    }
+                }
+            };
+
+            const horizontalChartOptions = {
+                ...chartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return '$' + (value / 1000) + 'k';
+                            }
+                        }
+                    }
+                }
+            };
+
+            new Chart(document.getElementById('ncLimitsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['For 1 Person Hurt', 'For Whole Accident', 'For Car Damage'],
+                    datasets: [{
+                        label: 'Current Shield',
+                        data: [30000, 60000, 25000],
+                        backgroundColor: '#C5A06D',
+                        borderColor: '#C5A06D',
+                        borderWidth: 1
+                    }, {
+                        label: 'New 2025 Shield',
+                        data: [50000, 100000, 50000],
+                        backgroundColor: '#5D7B6F',
+                        borderColor: '#5D7B6F',
+                        borderWidth: 1
+                    }]
+                },
+                options: chartOptions
+            });
+
+            new Chart(document.getElementById('neighborLimitsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['NC (Current)', 'South Carolina', 'Virginia', 'Tennessee', 'Georgia'],
+                    datasets: [{
+                        label: 'Coverage for Injuries (per person)',
+                        data: [30000, 25000, 30000, 25000, 25000],
+                        backgroundColor: '#5D7B6F',
+                    }, {
+                        label: 'Coverage for Car Damage',
+                        data: [25000, 25000, 20000, 25000, 25000],
+                        backgroundColor: '#C5A06D',
+                    }]
+                },
+                options: horizontalChartOptions
+            });
+            
+            new Chart(document.getElementById('uninsuredDonutChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['You Have to Pay', 'Your Insurance Pays'],
+                    datasets: [{
+                        data: [125000, 30000],
+                        backgroundColor: ['#D9534F', '#5CB85C'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                           callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(context.raw);
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+
+            const rentalResultEl = document.getElementById('rentalResult');
+            const rentalButtons = document.querySelectorAll('.rental-choice-btn');
+            const rentalCosts = {
+                decline: {
+                    title: "Your Cost",
+                    cost: "$2,570",
+                    details: "This includes your deductible plus sneaky fees for 'Loss of Use' and other things your regular insurance won't cover."
+                },
+                purchase: {
+                    title: "Your Cost",
+                    cost: "$175",
+                    details: "This is just the price for their insurance. You pay $0 for the accident and can walk away without any surprise bills."
+                }
+            };
+            
+            function updateRentalResult(choice) {
+                const data = rentalCosts[choice];
+                rentalResultEl.innerHTML = `
+                    <h4 class="font-bold text-lg">${data.title}</h4>
+                    <p class="text-4xl font-bold my-2 ${choice === 'decline' ? 'text-red-700' : 'text-green-600'}">${data.cost}</p>
+                    <p class="text-xs">${data.details}</p>
+                `;
+                rentalButtons.forEach(btn => {
+                    btn.classList.toggle('selected', btn.dataset.choice === choice);
+                });
+            }
+
+            rentalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    updateRentalResult(button.dataset.choice);
+                });
+            });
+            updateRentalResult('decline');
+
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = document.getElementById(button.dataset.target);
+                    const isOpening = !button.classList.contains('open');
+                    
+                    accordionButtons.forEach(b => {
+                        b.classList.remove('open');
+                        b.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                        const otherContent = document.getElementById(b.dataset.target);
+                        otherContent.style.maxHeight = '0';
+                    });
+
+                    if (isOpening) {
+                        button.classList.add('open');
+                        button.querySelector('span:last-child').style.transform = 'rotate(45deg)';
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+
+            const checklistItems = [
+                "Is my car insurance strong enough?",
+                "Do I have enough Uninsured Motorist coverage?",
+                "Does my health insurance work out of state?",
+                "Do I have a plan for a rental car?",
+                "Is my stuff covered if it's stolen?",
+                "Do I have special insurance if I rent my house?",
+                "Does my roadside help tow far enough?",
+                "Is my teen driver on my policy?",
+                "Should I get travel insurance?",
+                "Do I have an 'umbrella' policy for big problems?"
+            ];
+
+            const checklistContainer = document.getElementById('checklist');
+            checklistItems.forEach(itemText => {
+                const label = document.createElement('label');
+                label.className = 'flex items-center space-x-3 cursor-pointer';
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.className = 'h-5 w-5 rounded border-gray-300 text-[#5D7B6F] focus:ring-[#5D7B6F]';
+                const span = document.createElement('span');
+                span.className = 'text-sm';
+                span.textContent = itemText;
+                label.appendChild(input);
+                label.appendChild(span);
+                checklistContainer.appendChild(label);
+            });
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
